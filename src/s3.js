@@ -1,15 +1,6 @@
 const https = require("https");
 const fs = require("fs");
-const md5 = require("md5");
-const request = require("request");
 
-const download = (url, callback) => {
-  request.head(url, (err, res, body) => {
-    request(url)
-      .pipe(fs.createWriteStream("/tmp/test.jpg"))
-      .on("close", callback);
-  });
-};
 const AWS = require("aws-sdk");
 const { resolve } = require("path");
 const s3 = new AWS.S3({
@@ -36,4 +27,4 @@ const getS3 = (id) => {
   });
 };
 
-module.exports = { uploadFile, downloadFile, getS3 };
+module.exports = { getS3 };
